@@ -3,7 +3,6 @@ package models
 import (
 	"Ayile/utils"
 	"fmt"
-	beego "github.com/beego/beego/v2/server/web"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"strconv"
@@ -35,17 +34,6 @@ func insertArticle(article Article) (int64, error) {
 }
 
 //-----------查询文章---------
-
-// 根据页码查询文章
-func FindArticleWithPage(page int) ([]Article, error) {
-	//从配置文件中获取每页的文章数量
-	num, _ := beego.AppConfig.Int("articleListPageNum")
-	page--
-	// 2页面， 每页显示2条 {3,4}
-	// 3页面，每页显示5条  {11,12,13,14,15}
-	fmt.Println("---------->page", page)
-	return QueryArticleWithPage(page, num)
-}
 
 /*
 *

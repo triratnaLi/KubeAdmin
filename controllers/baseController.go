@@ -13,8 +13,8 @@ type BaseController struct {
 
 func (this *BaseController) Prepare() {
 
-	loginuser := this.GetSession("loginuser")
-	fmt.Println("loginuser---->", loginuser)
+	loginuser := this.GetSession("user")
+	fmt.Println("user---->", loginuser)
 	if loginuser != nil {
 		this.IsLogin = true
 		this.LoginUser = loginuser

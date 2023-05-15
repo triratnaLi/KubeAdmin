@@ -1,12 +1,11 @@
 package controllers
 
 import (
-	"Ayile/models"
-	"fmt"
+	beego "github.com/beego/beego/v2/server/web"
 )
 
 type HomeController struct {
-	BaseController
+	beego.Controller
 }
 
 /**
@@ -16,33 +15,6 @@ type HomeController struct {
  */
 
 func (this *HomeController) Get() {
-	//分页
-	// http://localhost:8080/
-
-	//标签
-	// http://localhost:8080?tag=web
-	tag := this.GetString("tag")
-	fmt.Println("tag:", tag)
-	page, _ := this.GetInt("page")
-	var artList []models.Article
-
-	if len(tag) > 0 {
-		//按照指定的标签搜索
-		artList, _ = models.QueryArticlesWithTag(tag)
-		this.Data["HasFooter"] = false
-	} else {
-		if page <= 0 {
-			page = 1
-		}
-		//设置分页
-		artList, _ = models.FindArticleWithPage(page)
-
-		this.Data["PageCode"] = models.ConfigHomeFooterPageCode(page)
-		this.Data["HasFooter"] = true
-	}
-
-	fmt.Println("IsLogin:", this.IsLogin, this.LoginUser)
-	this.Data["Content"] = models.MakeHomeBlocks(artList, this.IsLogin)
-
+	this.Data["User"] = this.GetSession("user")
 	this.TplName = "home.html"
 }

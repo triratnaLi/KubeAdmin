@@ -56,7 +56,9 @@
         </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href='javascript:if(confirm("确定退出吗？")){"/exit"}' class="nav-link"  role="button">退出</a>
+
+<!--        <a href='javascript:if(confirm("确定退出吗？")){return false;} {window.location.href="/login"}' class="nav-link"  role="button">退出</a>-->
+        <a href="/logout" onclick="if(!confirm('确定退出吗？')){return false;}" class="nav-link" role="button">退出</a>
       </li>
     </ul>
   </nav>
@@ -66,7 +68,7 @@
 <!--     Brand Logo -->
     <a href="#" class="brand-link">
       <img src="../static/dist/img/user2-160x160.jpg" alt="user" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><b>YILE</b></span>
+      <span class="brand-text font-weight-light"><b>{{.User}}</b></span>
     </a>
 <!--搜索-->
     <div class="sidebar">
@@ -114,6 +116,41 @@
             </li>
             </ul>
           </li>
+          <!--自动化部署-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                自动化部署
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="deploy/depupload.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>部署统计</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/frontend" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>前端部署</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>后端部署</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>小程序部署</p>
+                </a>
+              </li>
+            </ul>
         </ul>
       </nav>
     </div>

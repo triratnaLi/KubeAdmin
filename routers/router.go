@@ -2,39 +2,25 @@ package routers
 
 import (
 	"Ayile/controllers"
+	"Ayile/filters"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
 func init() {
-	beego.Router("/", &controllers.HomeController{})
+
+	//beego.InsertFilter("/", beego.BeforeRouter, filters.FilterUser)
+
+	beego.Router("/", &controllers.HomeController{}, "get:Get;post:Post")
+	beego.InsertFilter("/", beego.BeforeRouter, filters.FilterUser)
+
+	beego.Router("/logout", &controllers.LogoutController{})
 
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/register", &controllers.RegisterController{})
 
-	//退出
-	beego.Router("/exit", &controllers.ExitController{})
+	//部署概览
+	beego.Router("/depupload", &controllers.DepUploadController{})
+	//前端部署
+	beego.Router("/frontend", &controllers.FrontendController{})
 
-	////写文章
-	//beego.Router("/article/add", &controllers.AddArticleController{})
-	//
-	////显示文章详情
-	//beego.Router("/article/:id", &controllers.ShowArticleController{})
-	//
-	////更新文章
-	//beego.Router("/article/update", &controllers.UpdateArticleController{})
-	//
-	//// 删除文章
-	//beego.Router("/article/delete", &controllers.DeleteArticleController{})
-	//
-	////标签
-	//beego.Router("/tags", &controllers.TagsController{})
-	//
-	////相册
-	//beego.Router("/album", &controllers.AlbumController{})
-	//
-	////文件上传
-	//beego.Router("/upload", &controllers.UploadController{})
-	//
-	////关于我页面
-	//beego.Router("/aboutme", &controllers.AboutMeController{})
 }
