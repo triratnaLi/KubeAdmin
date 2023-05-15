@@ -18,9 +18,9 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/register", &controllers.RegisterController{})
 
-	//部署概览
-	beego.Router("/depupload", &controllers.DepUploadController{})
-	//前端部署
-	beego.Router("/frontend", &controllers.FrontendController{})
+	////部署概览
+	//beego.Router("/depupload", &controllers.DepUploadController{})
+	////前端部署
+	//beego.Router("/frontend", &controllers.FrontendController{})
 
 }
