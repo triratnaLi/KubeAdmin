@@ -10,4 +10,5 @@ var FilterUser = func(ctx *context.Context) {
 	if user == nil {
 		ctx.Redirect(302, "/login")
 	}
+
 }

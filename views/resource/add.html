@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>yile | resource</title>
+</head>
+<body>
+{{ template "nav.html" . }}
+
+<!--内嵌集群可视化监控-->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h5 class="m-0">集群资源概览</h5>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+
+  <section class="content">
+    <div class=" container-fluid">
+      <div class="content-header">
+        <div class="row mb-1">
+          <div class="col-sm-6">
+            <h5 class="mt-auto">集群资源概览</h5>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/static">主页</a></li>
+              <li class="breadcrumb-item active">集群资源概览</li>
+            </ol>
+          </div><!-- /.col -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">CPU 使用率</span>
+            <span class="info-box-number">
+                  80
+              <small>%</small>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">内存</span>
+            <span class="info-box-number">
+                  80
+              <small>%</small>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">磁盘</span>
+            <span class="info-box-number">760T</span>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">用户</span>
+            <span class="info-box-number">{{.UserCount}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!--      表格-->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-primary card-outline bg-dark bg-gradient-dark">
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="card-title">物理资源</h3>
+                <div class="d-flex align-items-center ml-auto">
+                  <input type="text" placeholder="搜索..." aria-label="搜索" class="form-control">
+                  <!-- 搜索按钮 -->
+                  <button type="button" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex align-items-center ml-auto">
+                <form id="newMachineForm" method="post" action="/resource/add">
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" name="Type" placeholder="服务分类" class="form-control " required>
+                    </div>
+                    <div class="col">
+                      <input type="text" name="UseType" placeholder="用途" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="text" name="OsVersion" placeholder="操作系统版本" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="text" name="Brand" placeholder="品牌" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="number" name="CPU" placeholder="CPU (C)" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="number" name="Memory" placeholder="内存 (G)" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="number" name="SystemDisk" placeholder="系统盘 (G)" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <input type="number" name="DataDisk" placeholder="数据盘 (G)" class="form-control" required>
+                    </div>
+                    <div class="col">
+                      <button type="submit" class="btn btn-default" style="width: 80px">提交</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- DataTables  & Plugins -->
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/static/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/static/plugins/jszip/jszip.min.js"></script>
+<script src="/static/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/static/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+
+<script>
+    $(function () {
+        // 点击新建按钮时提交表单
+        $('#newMachineForm').submit(function (event) {
+            event.preventDefault(); // 阻止默认的表单提交行为
+
+            var form = $(this);
+            $.post(form.attr('action'), form.serialize())
+                .done(function (response) {
+                    // 处理成功响应
+                    alert('新增成功！');
+                    // 进行其他操作，如刷新表格等
+                })
+                .fail(function (error) {
+                    // 处理失败响应
+                    alert('新增失败，请重试！');
+                });
+        });
+    });
+</script>
+</body>
+</html>

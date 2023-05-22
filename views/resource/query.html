@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>yile | resource</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/static/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+</head>
+<body>
+{{ template "nav.html" . }}
+
+<!--内嵌集群可视化监控-->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+
+  <section class="content">
+    <div class=" container-fluid content-header">
+      <div class="content-header">
+          <div class="row mb-1">
+            <div class="col-sm-6">
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+<!--          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>-->
+          <span class="info-box-icon bg-danger elevation-1">
+            <img src="/static/dist/img/resource/CPU.svg" alt="Cog Icon">
+          </span>
+          <div class="info-box-content">
+            <span class="info-box-text">CPU总核数</span>
+            <span class="info-box-number">
+                  {{ .TotalCpu }} C
+<!--              <small>%</small>-->
+            </span>
+          </div>
+        </div>
+      </div>
+        <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1">
+            <img src="/static/dist/img/resource/内存.svg" alt="Cog Icon">
+          </span>
+          <div class="info-box-content">
+            <span class="info-box-text">总内存</span>
+            <span class="info-box-number">
+                  {{ .TotalMem }} G
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- fix for small devices only -->
+      <div class="clearfix hidden-md-up"></div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-warning elevation-1">
+            <img src="/static/dist/img/resource/23E磁盘.svg" alt="Cog Icon">
+          </span>
+          <div class="info-box-content">
+            <span class="info-box-text">系统盘</span>
+            <span class="info-box-number"> {{ .TotalSysDisk }} G</span>
+          </div>
+        </div>
+      </div>
+        <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-primary elevation-1">
+            <img src="/static/dist/img/resource/23E磁盘.svg" alt="Cog Icon">
+          </span>
+          <div class="info-box-content">
+            <span class="info-box-text">数据盘</span>
+            <span class="info-box-number">{{ .TotalDataDisk }} G</span>
+          </div>
+        </div>
+      </div>
+      <!--      表格-->
+      <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <div class="card card-primary card-outline bg-dark bg-gradient-dark">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h3 class="card-title">物理资源</h3>
+                  <div class="d-flex align-items-center ml-auto">
+                    <form method="post" action="/resource/query">
+                      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newMachineModal"style="width: 80px">新增</button>
+                    </form>
+                    <input type="text" placeholder="搜索..." aria-label="搜索" class="form-control">
+                    <!-- 搜索按钮 -->
+                    <button type="button" class="btn btn-default">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4" style="white-space: nowrap;">
+                  <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" >
+                    <thead>
+                    <tr>
+                      <th class="sorting sorting_asc">序号</th>
+                      <th class="sorting">服务分类</th>
+                      <th class="sorting">用途</th>
+                      <th class="sorting">IP地址</th>
+                      <th class="sorting">操作系统版本</th>
+                      <th class="sorting">品牌</th>
+                      <th class="sorting">CPU (C)</th>
+                      <th class="sorting">内存 (G)</th>
+                      <th class="sorting">系统盘 (G)</th>
+                      <th class="sorting">数据盘 (G)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      {{ range .Machines }}
+                    <tr>
+                      <td>{{ .Id }}</td>
+                      <td>{{ .Type }}</td>
+                      <td>{{ .UseType }}</td>
+                      <td>{{ .IpAddress }}</td>
+                      <td>{{ .OsVersion }}</td>
+                      <td>{{ .Brand }}</td>
+                      <td>{{ .CPU }}</td>
+                      <td>{{ .Memory }}</td>
+                      <td>{{ .SystemDisk }}</td>
+                      <td>{{ .DataDisk }}</td>
+                    </tr>
+                    {{ end }}
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal fade" id="newMachineModal" tabindex="-1" role="dialog" aria-labelledby="newMachineModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="newMachineModalLabel">新增机器</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">X</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="newMachineForm" method="post" action="/resource/query">
+                          <!-- 表单内容 -->
+                          <div class="form-group">
+                            <input type="text" name="Type" placeholder="服务分类" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" name="UseType" placeholder="用途" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" name="IpAddress" placeholder="IP地址" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" name="OsVersion" placeholder="操作系统版本" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" name="Brand" placeholder="品牌" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="number" name="CPU" placeholder="CPU (C)" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="number" name="Memory" placeholder="内存 (G)" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="number" name="SystemDisk" placeholder="系统盘 (G)" class="form-control" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="number" name="DataDisk" placeholder="数据盘 (G)" class="form-control" required>
+                          </div>
+                          <!-- 其他表单字段 -->
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary" form="newMachineForm">提交</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/static/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="/static/plugins/jszip/jszip.min.js"></script>
+<script src="/static/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="/static/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="/static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
+<script>
+    $(function () {
+        // 点击新建按钮时提交表单
+        $('#newMachineForm').submit(function (event) {
+            event.preventDefault(); // 阻止默认的表单提交行为
+
+            var form = $(this);
+            $.post(form.attr('action'), form.serialize())
+                .done(function (response) {
+                    // 处理成功响应
+                    alert('新增成功！');
+                    // 跳转到/resource/query的GET请求
+                    window.location.href = "/resource/query";
+                    // 进行其他操作，如刷新表格等
+                })
+                .fail(function (error) {
+                    // 处理失败响应
+                    alert('新增失败，请重试！');
+                });
+        });
+    });
+</script>
+<script>
+    $(function () {
+        $('#example2').DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": true,
+            "searching": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+            "dom": '<"card-tools d-flex"l<"ml-auto"f>>rtip',
+            "language": {
+                "search": "搜索:",
+                "lengthMenu": "每页显示 _MENU_ 条记录",
+                "zeroRecords": "没有匹配的数据",
+                "info": "第 _PAGE_ 页 / 共 _PAGES_ 页",
+                "infoEmpty": "暂无数据",
+                "infoFiltered": "(从 _MAX_ 条数据中检索)",
+                "paginate": {
+                    "first": "首页",
+                    "previous": "上一页",
+                    "next": "下一页",
+                    "last": "末页"
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

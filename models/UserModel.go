@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/beego/beego/v2/client/orm"
+	"github.com/beego/beego/v2/core/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -14,12 +15,26 @@ type User struct {
 }
 
 func init() {
-	orm.RegisterModel(new(User))
+
+	// 加载配置文件
+	appConfig, err := config.NewConfig("ini", "conf/app.conf")
+	if err != nil {
+		panic(err)
+	}
+
+	dbHost, _ := appConfig.String("host")
+	dbPort, _ := appConfig.String("port")
+	dbUser, _ := appConfig.String("mysqluser")
+	dbPassword, _ := appConfig.String("mysqlpwd")
+	dbName, _ := appConfig.String("dbname")
+
+	dbConnStr := dbUser + ":" + dbPassword + "@tcp(" + dbHost + ":" + dbPort + ")/" + dbName
 	// 注册数据库驱动
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 
 	// 注册数据库连接
-	orm.RegisterDataBase("default", "mysql", "root:root@tcp(localhost:3306)/yile?charset=utf8mb4")
+	orm.RegisterDataBase("default", "mysql", dbConnStr)
+	orm.RegisterModel(new(User))
 
 	// 自动建表
 	orm.RunSyncdb("default", false, true)

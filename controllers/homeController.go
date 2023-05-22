@@ -16,5 +16,8 @@ type HomeController struct {
 
 func (this *HomeController) Get() {
 	this.Data["User"] = this.GetSession("user")
+
+	currentPath := this.Ctx.Request.URL.Path
+	this.Data["Page"] = currentPath
 	this.TplName = "home.html"
 }

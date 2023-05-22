@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Namespaces and Deployments</title>
+  <style>
+      table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+      th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+      }
+      th {
+          background-color: #f2f2f2;
+      }
+  </style>
+</head>
+<body>
+<h1>Namespaces</h1>
+<form action="/deployment" method="get">
+  <label for="namespace">Select Namespace:</label>
+  <select id="namespace" name="namespace">
+    <option value="">All</option>
+    {{range .ViewData.Namespaces}}
+    <option value="{{.Name}}" {{if eq .Name $.ViewData.SelectedNamespace}}selected{{end}}>{{.Name}}</option>
+    {{end}}
+  </select>
+  <button type="submit">Submit</button>
+</form>
+{{if .ViewData.SelectedNamespace}}
+<h2>Deployments in {{.ViewData.SelectedNamespace}}</h2>
+<table>
+  <tr>
+    <th>名称</th>
+    <th>副本</th>
+    <th>容器端口</th>
+    <th>状态</th>
+    <th>环境</th>
+    <th>节点组</th>
+    <th>服务组</th>
+    <th>服务名</th>
+    <th>项目名</th>
+  </tr>
+  {{range .ViewData.Deployments}}
+  <tr>
+    <td>{{.Name}}</td>
+    <td>{{.Replicas}}</td>
+    <td>
+      {{range .ContainerPorts}}
+      {{.}}
+      <br>
+      {{end}}
+    </td>
+    <td>{{ .Status }}</td>
+    <td>{{.DeployEnv}}</td>
+    <td>{{.NodeGroup}}</td>
+    <td>{{.ServiceGroup}}</td>
+    <td>{{.Function}}</td>
+    <td>{{.GitName }}</td>
+  </tr>
+  {{end}}
+</table>
+{{end}}
+</body>
+</html>

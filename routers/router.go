@@ -8,8 +8,10 @@ import (
 
 func init() {
 
-	//beego.InsertFilter("/", beego.BeforeRouter, filters.FilterUser)
+	beego.InsertFilter("/resource/*", beego.BeforeRouter, filters.FilterUser)
+	beego.Router("/resource/query", &controllers.ResourceController{}, "get:Query;post:Add")
 
+	//过滤路由
 	beego.Router("/", &controllers.HomeController{}, "get:Get;post:Post")
 	beego.InsertFilter("/", beego.BeforeRouter, filters.FilterUser)
 
@@ -18,9 +20,6 @@ func init() {
 	beego.Router("/login", &controllers.LoginController{})
 	beego.Router("/register", &controllers.RegisterController{})
 
-	////部署概览
-	//beego.Router("/depupload", &controllers.DepUploadController{})
-	////前端部署
-	//beego.Router("/frontend", &controllers.FrontendController{})
+	beego.Router("/deployment", &controllers.DeploymentController{}, "get:Get;post:Post")
 
 }
