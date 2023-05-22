@@ -9,23 +9,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="完善用户登录、用户注册、登录用户显示等功能">
-      <change beforePath="$PROJECT_DIR$/conf/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/app.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/baseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/baseController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/homeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/homeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/filters/filter.go" beforeDir="false" afterPath="$PROJECT_DIR$/filters/filter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/HomeModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/UserModel.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/UserModel.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/albumModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/artictlModle.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/dist/js/demo.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/dist/js/demo.js.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home.html" beforeDir="false" />
-    </list>
+    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="完善用户登录、用户注册、登录用户显示等功能" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
