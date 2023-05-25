@@ -1,25 +1,31 @@
 package routers
 
 import (
-	"Ayile/controllers"
+	"Ayile/controllers/base"
+	"Ayile/controllers/kubernetes"
+	"Ayile/controllers/machine"
 	"Ayile/filters"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
 func init() {
 
-	beego.InsertFilter("/resource/*", beego.BeforeRouter, filters.FilterUser)
-	beego.Router("/resource/query", &controllers.ResourceController{}, "get:Query;post:Add")
-
-	//过滤路由
-	beego.Router("/", &controllers.HomeController{}, "get:Get;post:Post")
+	//base
+	beego.Router("/", &base.HomeController{}, "get:Get;post:Post")
 	beego.InsertFilter("/", beego.BeforeRouter, filters.FilterUser)
 
-	beego.Router("/logout", &controllers.LogoutController{})
+	beego.Router("/logout", &base.LogoutController{})
 
-	beego.Router("/login", &controllers.LoginController{})
-	beego.Router("/register", &controllers.RegisterController{})
+	beego.Router("/login", &base.LoginController{})
+	beego.Router("/register", &base.RegisterController{})
 
-	beego.Router("/deployment", &controllers.DeploymentController{}, "get:Get;post:Post")
+	//resoure
+	beego.InsertFilter("/resource/*", beego.BeforeRouter, filters.FilterUser)
+	beego.Router("/resource/query", &machine.ResourceController{}, "get:Query;post:Add")
 
+	//kubernetes
+	beego.InsertFilter("/kube/*", beego.BeforeRouter, filters.FilterUser)
+	beego.Router("/kube/deployment", &kubernetes.DeploymentController{}, "get:Get;post:Post")
+	beego.Router("/kube/daemonset", &kubernetes.DaemonSetController{}, "get:QueryDaemonSets;post:Post")
+	beego.Router("/kube/service", &kubernetes.ServicesController{}, "get:QuerySvc")
 }

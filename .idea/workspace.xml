@@ -9,7 +9,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="完善用户登录、用户注册、登录用户显示等功能" />
+    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="优化前端代码，增加了deployment、DaemonSets查询功能">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ayile.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ayile.tar.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/app.conf" beforeDir="false" afterPath="$PROJECT_DIR$/conf/app.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/baseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base/baseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/daemonSetController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/kubernetes/daemonSetController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/deploymentController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/kubernetes/deploymentController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/homeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base/homeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/loginController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base/loginController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/logoutController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base/logoutController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/registerController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base/registerController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/resourceController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/machine/resourceController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/kubernetes/daemonsetQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/daemonsetQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/nav.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +47,11 @@
   </component>
   <component name="GOROOT" url="file://D:/install" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="2023-05-15" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
@@ -62,7 +86,7 @@
     &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;io.github.will7200.plugins.casbin.policy_file&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/EDY/go/src/AdminLTE&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/EDY/go/htgolang-20200328&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -79,17 +103,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers\kubernetes" />
+      <recent name="C:\Users\EDY\go\src\Ayile\views\kubernetes" />
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers" />
+      <recent name="C:\Users\EDY\go\src\Ayile\static\css" />
       <recent name="C:\Users\EDY\go\src\Ayile\views\resource" />
-      <recent name="C:\Users\EDY\go\src\Ayile\static\plugins\datatables" />
-      <recent name="C:\Users\EDY\go\src\Ayile\static\plugins" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views\pages" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers\kubernetes" />
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers" />
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers\machine" />
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers\base" />
       <recent name="C:\Users\EDY\go\src\Ayile\views\resource" />
-      <recent name="C:\Users\EDY\go\src\Ayile\filters" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views\deploy" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -158,7 +183,8 @@
       <path value="$PROJECT_DIR$/../.." />
     </ignored-roots>
     <MESSAGE value="完善用户登录、用户注册、登录用户显示等功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善用户登录、用户注册、登录用户显示等功能" />
+    <MESSAGE value="优化前端代码，增加了deployment、DaemonSets查询功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化前端代码，增加了deployment、DaemonSets查询功能" />
   </component>
   <component name="VgoProject">
     <environment>
