@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="完善用户登录、用户注册、登录用户显示等功能" />
+    <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="完善用户登录、用户注册、登录用户显示等功能">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ayile.exe" beforeDir="false" afterPath="$PROJECT_DIR$/Ayile.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/deploymentController.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/adminlte.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/adminlte.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/dist/js/demo.js.bak" beforeDir="false" afterPath="$PROJECT_DIR$/static/dist/js/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/nav.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,43 +56,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;configurable..is.expanded&quot;: &quot;true&quot;,
-    &quot;configurable.GoLibrariesConfigurable.is.expanded&quot;: &quot;true&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;io.github.will7200.plugins.casbin.policy_file&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/EDY/go/src/AdminLTE&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;two.files.diff.last.used.folder&quot;: &quot;C:/Users/EDY/go/src/Ayile&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultGoTemplateProperty": "Go File",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "configurable..is.expanded": "true",
+    "configurable.GoLibrariesConfigurable.is.expanded": "true",
+    "go.import.settings.migrated": "true",
+    "io.github.will7200.plugins.casbin.policy_file": "",
+    "last_opened_file_path": "C:/Users/EDY/go/src/AdminLTE",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "two.files.diff.last.used.folder": "C:/Users/EDY/go/src/Ayile",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件&quot;: [
-      &quot;PLAIN_TEXT&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/新建临时文件": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\EDY\go\src\Ayile\views\kubernetes" />
+      <recent name="C:\Users\EDY\go\src\Ayile\controllers" />
+      <recent name="C:\Users\EDY\go\src\Ayile\static\css" />
       <recent name="C:\Users\EDY\go\src\Ayile\views\resource" />
       <recent name="C:\Users\EDY\go\src\Ayile\static\plugins\datatables" />
-      <recent name="C:\Users\EDY\go\src\Ayile\static\plugins" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views\pages" />
-      <recent name="C:\Users\EDY\go\src\Ayile\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\EDY\go\src\Ayile\views\resource" />

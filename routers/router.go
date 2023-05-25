@@ -22,4 +22,5 @@ func init() {
 
 	beego.Router("/deployment", &controllers.DeploymentController{}, "get:Get;post:Post")
 
+	beego.Router("/daemonset", &controllers.DaemonSetController{}, "get:Get;post:Post")
 }

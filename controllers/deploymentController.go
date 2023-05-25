@@ -5,6 +5,7 @@ import (
 	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/util/json"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 )
@@ -20,14 +21,14 @@ type NameSpaceData struct {
 }
 
 type DeploymentData struct {
-	Name           string
-	Labels         map[string]string
-	Annotations    map[string]string
-	Function       string
-	DeployEnv      string
-	NodeGroup      string
-	ServiceGroup   string
-	GitName        string
+	Name         string
+	Labels       map[string]string
+	Annotations  map[string]string
+	Function     string
+	DeployEnv    string
+	NodeGroup    string
+	ServiceGroup string
+	//GitName        string
 	Replicas       string
 	ContainerPorts []int32
 	Status         string
@@ -42,6 +43,10 @@ type ViewData struct {
 
 func (c *DeploymentController) Get() {
 	selectedNamespace := c.GetString("namespace")
+
+	if selectedNamespace == "" {
+		selectedNamespace = "All"
+	}
 
 	config, err := clientcmd.BuildConfigFromFlags("", "conf/k8s.conf")
 	if err != nil {
@@ -64,6 +69,11 @@ func (c *DeploymentController) Get() {
 	var namespaceData []NameSpaceData
 	var deployments []DeploymentData
 
+	// 副本总数、运行中的 Deployment 总数和失败的总数
+	totalReplicas := 0
+	totalRunning := 0
+	totalFailed := 0
+
 	for _, ns := range namespaces.Items {
 
 		data := NameSpaceData{
@@ -73,9 +83,10 @@ func (c *DeploymentController) Get() {
 		}
 		namespaceData = append(namespaceData, data)
 
-		if selectedNamespace != "" && ns.ObjectMeta.Name == selectedNamespace {
-			deploys, err := clientset.AppsV1().Deployments(selectedNamespace).List(context.TODO(), metav1.ListOptions{})
+		if selectedNamespace == "All" || ns.ObjectMeta.Name == selectedNamespace {
+			deploys, err := clientset.AppsV1().Deployments(ns.ObjectMeta.Name).List(context.TODO(), metav1.ListOptions{})
 			if err != nil {
+
 				c.Data["json"] = map[string]interface{}{"error": err.Error()}
 				return
 			}
@@ -86,9 +97,11 @@ func (c *DeploymentController) Get() {
 				for _, condition := range deploy.Status.Conditions {
 					if condition.Type == "Available" && condition.Status == "True" {
 						status = "Running"
+						totalRunning++
 						break
 					} else if condition.Status != "True" {
 						status = "Not Running"
+						totalFailed++
 					}
 				}
 
@@ -99,16 +112,18 @@ func (c *DeploymentController) Get() {
 					}
 				}
 				replicas := fmt.Sprintf("%d/%d", deploy.Status.AvailableReplicas, *deploy.Spec.Replicas)
+				replicasCount := int(*deploy.Spec.Replicas)
+				totalReplicas += replicasCount
 
 				deploymentData := DeploymentData{
-					Name:           deploy.Name,
-					Labels:         deploy.ObjectMeta.Labels,
-					Annotations:    deploy.ObjectMeta.Annotations,
-					Function:       deploy.Spec.Template.ObjectMeta.Annotations["Function"],
-					DeployEnv:      deploy.Spec.Template.ObjectMeta.Annotations["deployEnv"],
-					NodeGroup:      deploy.Spec.Template.ObjectMeta.Annotations["nodeGroup"],
-					ServiceGroup:   deploy.Spec.Template.ObjectMeta.Annotations["serviceGroup"],
-					GitName:        deploy.Spec.Template.ObjectMeta.Annotations["GitName"],
+					Name:         deploy.Name,
+					Labels:       deploy.ObjectMeta.Labels,
+					Annotations:  deploy.ObjectMeta.Annotations,
+					Function:     deploy.Spec.Template.ObjectMeta.Annotations["Function"],
+					DeployEnv:    deploy.Spec.Template.ObjectMeta.Annotations["deployEnv"],
+					NodeGroup:    deploy.Spec.Template.ObjectMeta.Annotations["nodeGroup"],
+					ServiceGroup: deploy.Spec.Template.ObjectMeta.Annotations["serviceGroup"],
+					//GitName:        deploy.Spec.Template.ObjectMeta.Annotations["GitName"],
 					Replicas:       replicas,
 					ContainerPorts: containerPorts,
 					Status:         status,
@@ -130,6 +145,20 @@ func (c *DeploymentController) Get() {
 	c.Data["ViewData"] = viewData
 	c.TplName = "kubernetes/DeploymentQuery.html"
 	c.Data["Page"] = currentPath
+	c.Data["User"] = c.GetSession("user")
+	c.Data["TotalReplicas"] = totalReplicas
+	c.Data["TotalRunning"] = totalRunning
+	c.Data["TotalFailed"] = totalFailed
+	TotalDeployment := viewData.Deployments
+	c.Data["TotalDeployment"] = len(TotalDeployment)
+
+	jsonData, err := json.Marshal(viewData)
+	if err != nil {
+		c.Data["json"] = map[string]interface{}{"error": err.Error()}
+		return
+	}
+	c.Ctx.Output.Body(jsonData)
+
 }
 
 func GetDeploymentLabels(deploymentName string) map[string]string {
