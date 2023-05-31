@@ -2,8 +2,10 @@ package kubernetes
 
 import (
 	"Ayile/models"
+	"context"
 	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 type DaemonSetController struct {
@@ -20,7 +22,6 @@ type DaemonSetData struct {
 	ServiceGroup   string
 	Replicas       string
 	ContainerPorts []int32
-	Status         string
 	Namespace      string
 }
 
@@ -49,10 +50,47 @@ func (c *DaemonSetController) QueryDaemonSets() {
 	}
 
 	var daemonSets []DaemonSetData
+	var totalNumberReady int32
+	var totalNumberAvailable int32
+	var totalNumberUnavailable int32
+
 	for _, ns := range namespaces {
 		if selectedNamespace == "All" || ns.Name == selectedNamespace {
-			// TODO: Retrieve daemon sets for the namespace and populate daemonSets variable
-			// Example: daemonSets = append(daemonSets, daemonsetData)
+			daemonSetList, err := client.GetClientset().AppsV1().DaemonSets(ns.Name).List(context.TODO(), metav1.ListOptions{})
+
+			if err != nil {
+				c.Data["json"] = map[string]interface{}{"error": err.Error()}
+				return
+			}
+
+			for _, daemon := range daemonSetList.Items {
+
+				totalNumberReady = totalNumberReady + daemon.Status.NumberReady
+				totalNumberAvailable = totalNumberAvailable + daemon.Status.NumberAvailable
+				totalNumberUnavailable = totalNumberUnavailable + daemon.Status.NumberUnavailable
+				var containerPorts []int32
+				for _, container := range daemon.Spec.Template.Spec.Containers {
+					for _, port := range container.Ports {
+						containerPorts = append(containerPorts, port.ContainerPort)
+					}
+				}
+
+				replicas := fmt.Sprintf("%d/%d", daemon.Status.NumberReady, daemon.Status.NumberAvailable)
+
+				daemonSet := DaemonSetData{
+					Name:           daemon.Name,
+					Labels:         daemon.Labels,
+					ContainerPorts: containerPorts,
+					Replicas:       replicas,
+					Annotations:    daemon.ObjectMeta.Annotations,
+					Function:       daemon.Spec.Template.ObjectMeta.Annotations["Function"],
+					DeployEnv:      daemon.Spec.Template.ObjectMeta.Annotations["deployEnv"],
+					NodeGroup:      daemon.Spec.Template.ObjectMeta.Annotations["nodeGroup"],
+					ServiceGroup:   daemon.Spec.Template.ObjectMeta.Annotations["serviceGroup"],
+					Namespace:      daemon.Namespace,
+				}
+				daemonSets = append(daemonSets, daemonSet)
+			}
 		}
 	}
 
@@ -62,8 +100,12 @@ func (c *DaemonSetController) QueryDaemonSets() {
 		DaemonSets:        daemonSets,
 	}
 
+	TotalDaemonSet := daemonSetViewData.DaemonSets
+	c.Data["TotalDaemonSet"] = len(TotalDaemonSet)
 	c.Data["DaemonSetViewData"] = daemonSetViewData
 	c.Data["User"] = c.GetSession("user")
 	c.TplName = "kubernetes/daemonsetQuery.html"
-	fmt.Println(daemonSetViewData.Namespaces[1].Name)
+	currentPath := c.Ctx.Request.URL.Path
+	c.Data["Page"] = currentPath
+
 }

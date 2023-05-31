@@ -27,5 +27,5 @@ func init() {
 	beego.InsertFilter("/kube/*", beego.BeforeRouter, filters.FilterUser)
 	beego.Router("/kube/deployment", &kubernetes.DeploymentController{}, "get:Get;post:Post")
 	beego.Router("/kube/daemonset", &kubernetes.DaemonSetController{}, "get:QueryDaemonSets;post:Post")
-	beego.Router("/kube/service", &kubernetes.ServicesController{}, "get:QuerySvc")
+	beego.Router("/kube/service", &kubernetes.ServicesController{}, "get:QueryServices;post:Post")
 }

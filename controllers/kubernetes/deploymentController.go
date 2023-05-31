@@ -148,6 +148,7 @@ func (c *DeploymentController) Get() {
 		return
 	}
 	c.Ctx.Output.Body(jsonData)
+
 }
 
 func GetDeploymentLabels(deploymentName string) map[string]string {

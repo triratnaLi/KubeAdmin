@@ -84,8 +84,8 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item {{ if or (eq .Page `/resource/query`) (eq .Page `/resource/query`) }}menu-open{{ end }}">
-            <a href="#" class="nav-link {{ if or (eq .Page `/resource/query`) (eq .Page `/resource/query`) }}active{{ end }}">
+          <li class="nav-item {{ if or (eq .Page `/resource/query`) }}menu-open{{ end }}">
+            <a href="#" class="nav-link {{ if or (eq .Page `/resource/query`) }}active{{ end }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 可视化监控

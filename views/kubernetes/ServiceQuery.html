@@ -30,58 +30,6 @@
     </div>
 
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-          <span class="info-box-icon bg-danger elevation-1">
-            <img src="/static/dist/img/resource/CPU.svg" alt="Cog Icon">
-          </span>
-          <div class="info-box-content">
-            <span class="info-box-text">运行中</span>
-            <span class="info-box-number">{{ .TotalNumberReady }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-success elevation-1">
-            <img src="/static/dist/img/resource/内存.svg" alt="Cog Icon">
-          </span>
-          <div class="info-box-content">
-            <span class="info-box-text">状态异常</span>
-            <span class="info-box-number">{{ .TotalNumberUnavailable }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="clearfix hidden-md-up"></div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-warning elevation-1">
-            <img src="/static/dist/img/resource/23E磁盘.svg" alt="Cog Icon">
-          </span>
-          <div class="info-box-content">
-            <span class="info-box-text">服务总计</span>
-            <span class="info-box-number">{{ .TotalDaemonSet }} </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box mb-3">
-          <span class="info-box-icon bg-primary elevation-1">
-            <img src="/static/dist/img/resource/23E磁盘.svg" alt="Cog Icon">
-          </span>
-          <div class="info-box-content">
-            <span class="info-box-text">副本总计</span>
-            <span class="info-box-number">{{ .TotalNumberAvailable }}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-12">
         <div class="card card-primary card-outline bg-dark bg-gradient-dark">
           <div class="card-header d-flex justify-content-between align-items-center">
@@ -107,22 +55,37 @@
                 <th class="sorting">Port</th>
                 <th class="sorting">TargetPort</th>
                 <th class="sorting">NodePort</th>
-                <th class="sorting">Type</th>
-                <th class="sorting">SessionAffinity</th>
-                <th class="sorting">InternalTrafficPolicy</th>
-                <th class="sorting">Selector</th>
+                <th class="sorting">类型</th>
+<!--                <th class="sorting">会话亲和性</th>-->
+<!--                <th class="sorting">内部流量策略</th>-->
+                <th class="sorting">选择器</th>
               </tr>
               </thead>
               <tbody>
               {{range .ServiceViewData.Services}}
               <tr>
                 <td>{{.Name}}</td>
-                <td>{{.Port}}</td>
-                <td>{{.TargetPort}}</td>
-                <td>{{.NodePort}}</td>
+                <td>
+                  {{range .Port}}
+                  {{.}}
+                  <br>
+                  {{end}}
+                </td>
+                <td>
+                  {{range .TargetPort}}
+                  {{.}}
+                  <br>
+                  {{end}}
+                </td>
+                <td>
+                  {{range .NodePort}}
+                  {{.}}
+                  <br>
+                  {{end}}
+                </td>
                 <td>{{.Type}}</td>
-                <td>{{.SessionAffinity}}</td>
-                <td>{{.InternalTrafficPolicy}}</td>
+<!--                <td>{{.SessionAffinity}}</td>-->
+<!--                <td>{{.InternalTrafficPolicy}}</td>-->
                 <td>{{.Selector}}</td>
               </tr>
               {{end}}
@@ -153,16 +116,58 @@
 <script src="/static/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="/static/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="/static/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/static/dist/js/adminlte.min.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
     $("#example2").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "dom": 'Bfrtip',
+      "buttons": [
+        {
+          extend: 'copy',
+          text: '复制'
+        },
+        {
+          extend: 'csv',
+          text: '导出CSV'
+        },
+        {
+          extend: 'excel',
+          text: '导出Excel'
+        },
+        {
+          extend: 'pdf',
+          text: '导出PDF'
+        },
+        {
+          extend: 'print',
+          text: '打印'
+        },
+        {
+          extend: 'colvis',
+          text: '列可见性'
+        }
+      ],
+      "language": {
+        "lengthMenu": "每页显示 _MENU_ 条记录",
+        "zeroRecords": "没有匹配的数据",
+        "info": "第 _PAGE_ 页 / 共 _PAGES_ 页",
+        "infoEmpty": "暂无数据",
+        "infoFiltered": "(从 _MAX_ 条数据中检索)",
+        "paginate": {
+          "first": "首页",
+          "previous": "上一页",
+          "next": "下一页",
+          "last": "末页"
+        }
+      }
     }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
+    $('.dataTables_filter').remove(); // 移除搜索框
   });
 </script>
+
 </body>
 </html>
