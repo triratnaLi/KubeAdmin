@@ -2,6 +2,7 @@ package routers
 
 import (
 	"Ayile/controllers/base"
+	"Ayile/controllers/gitlab"
 	"Ayile/controllers/kubernetes"
 	"Ayile/controllers/machine"
 	"Ayile/filters"
@@ -28,4 +29,8 @@ func init() {
 	beego.Router("/kube/deployment", &kubernetes.DeploymentController{}, "get:Get;post:Post")
 	beego.Router("/kube/daemonset", &kubernetes.DaemonSetController{}, "get:QueryDaemonSets;post:Post")
 	beego.Router("/kube/service", &kubernetes.ServicesController{}, "get:QueryServices;post:Post")
+
+	//gitlab
+	beego.Router("/pipeline/form", &gitlab.PipelineController{}, "get:ShowForm")
+	beego.Router("/pipeline/create", &gitlab.PipelineController{}, "post:CreatePipeline")
 }

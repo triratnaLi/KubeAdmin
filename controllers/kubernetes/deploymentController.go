@@ -147,11 +147,16 @@ func (c *DeploymentController) Get() {
 		c.Data["json"] = map[string]interface{}{"error": err.Error()}
 		return
 	}
-	c.Ctx.Output.Body(jsonData)
+	err = c.Ctx.Output.Body(jsonData)
+	if err != nil {
+		// 处理发送响应体错误的情况
+		// 例如记录日志或返回适当的错误响应
+		c.Data["json"] = map[string]interface{}{"error": err.Error()}
+	}
 
 }
 
-func GetDeploymentLabels(deploymentName string) map[string]string {
+func GetDeploymentLabels(_ string) map[string]string {
 	// 在这里根据 deploymentName 获取相应的标签
 	// 返回一个 map[string]string 类型的标签数据
 

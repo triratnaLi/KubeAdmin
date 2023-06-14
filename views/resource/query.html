@@ -243,31 +243,56 @@
         });
     });
 </script>
-<script>
-    $(function () {
-        $('#example2').DataTable({
-            "responsive": true,
-            "lengthChange": true,
-            "autoWidth": true,
-            "searching": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
-            "dom": '<"card-tools d-flex"l<"ml-auto"f>>rtip',
-            "language": {
-                "search": "搜索:",
-                "lengthMenu": "每页显示 _MENU_ 条记录",
-                "zeroRecords": "没有匹配的数据",
-                "info": "第 _PAGE_ 页 / 共 _PAGES_ 页",
-                "infoEmpty": "暂无数据",
-                "infoFiltered": "(从 _MAX_ 条数据中检索)",
-                "paginate": {
-                    "first": "首页",
-                    "previous": "上一页",
-                    "next": "下一页",
-                    "last": "末页"
-                }
-            }
-        });
-    });
+<<script>
+  $(function () {
+    $("#example2").DataTable({
+      "responsive": false,
+      "lengthChange": true,
+      "autoWidth": true,
+      "dom": 'Bfrtip',
+      "buttons": [
+        {
+          extend: 'copy',
+          text: '复制'
+        },
+        {
+          extend: 'csv',
+          text: '导出CSV'
+        },
+        {
+          extend: 'excel',
+          text: '导出Excel'
+        },
+        {
+          extend: 'pdf',
+          text: '导出PDF'
+        },
+        {
+          extend: 'print',
+          text: '打印'
+        },
+        {
+          extend: 'colvis',
+          text: '列可见性'
+        }
+      ],
+      "language": {
+        "lengthMenu": "每页显示 _MENU_ 条记录",
+        "zeroRecords": "没有匹配的数据",
+        "info": "第 _PAGE_ 页 / 共 _PAGES_ 页",
+        "infoEmpty": "暂无数据",
+        "infoFiltered": "(从 _MAX_ 条数据中检索)",
+        "paginate": {
+          "first": "首页",
+          "previous": "上一页",
+          "next": "下一页",
+          "last": "末页"
+        }
+      }
+    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
+    $('.dataTables_filter').remove(); // 移除搜索框
+  });
 </script>
 </body>
 </html>

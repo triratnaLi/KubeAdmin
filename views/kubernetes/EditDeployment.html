@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Edit Deployment</title>
+</head>
+<body>
+<h1>Edit Deployment: {{ .DeploymentName }}</h1>
+<form method="POST" action="/kubernetes/updatedeployment?namespace={{ .SelectedNamespace }}&deployment={{ .DeploymentName }}">
+  <textarea name="yamlContent" rows="10" cols="80">{{ .DeploymentYAML }}</textarea>
+  <br>
+  <input type="submit" value="Update Deployment">
+</form>
+</body>
+</html>

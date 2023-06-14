@@ -10,19 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1d0d185-af5c-4677-9a51-7876f20173b4" name="变更" comment="优化前端代码，增加了deployment、DaemonSets查询功能">
+      <change afterPath="$PROJECT_DIR$/controllers/gitlab/pipeline.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/pipeline.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/gitlab/RunPipeline.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/gitlab/pipeline_form.tpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/kubernetes/EditDeployment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ayile.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ayile.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/kubernetes/daemonSetController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/kubernetes/daemonSetController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/kubernetes/deploymentController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/kubernetes/deploymentController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/kubernetes/serviceController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/kubernetes/serviceController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/deployment.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/namespace.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/myUtils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/myUtils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/DeploymentQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/kubernetes/ServiceQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/ServiceQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/kubernetes/daemonsetQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/kubernetes/daemonsetQuery.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/resource/query.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/resource/query.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/resource/resource.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/resource/resource.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

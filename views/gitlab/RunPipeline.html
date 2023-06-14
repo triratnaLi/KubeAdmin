@@ -1,0 +1,12 @@
+<form action="/pipeline/run" method="post">
+  <label for="ref">Branch or Tag:</label>
+  <input type="text" id="ref" name="ref" required><br><br>
+
+  <label for="varName">Variable Name:</label>
+  <input type="text" id="varName" name="varName" required><br>
+
+  <label for="varValue">Variable Value:</label>
+  <input type="text" id="varValue" name="varValue" required><br><br>
+
+  <input type="submit" value="Run Pipeline">
+</form>

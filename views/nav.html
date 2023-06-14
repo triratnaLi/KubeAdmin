@@ -154,7 +154,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item {{ if or (eq .Page `/kueb/deployment`) (eq .Page `/kube/daemonset`) (eq .Page `/kube/service`)}}menu-open{{ end }}">
+          <li class="nav-item {{ if or (eq .Page `/kube/deployment`) (eq .Page `/kube/daemonset`) (eq .Page `/kube/service`)}}menu-open{{ end }}">
             <a href="#" class="nav-link {{ if or (eq .Page `/kube/deployment`) (eq .Page `/kube/daemonset`) (eq .Page `/kube/service`)}}active{{ end }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
