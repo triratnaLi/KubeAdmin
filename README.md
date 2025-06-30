@@ -8,8 +8,8 @@
 ![image](https://github.com/user-attachments/assets/8638f4ed-914c-4dc8-8b00-ef2d21a5cbeb)
 
 ### k8s集群deployment
-![36cd9001e876deb6b49b7152f318a1d](https://github.com/triratnaLi/yileAdmin/assets/111877391/8ee0a545-74bf-4a68-966a-9379220b5717)
+![image](https://github.com/user-attachments/assets/4cc9c95b-89f4-4273-9fe5-b0e9f315f157)
 
 ### service
-![76543ae99beed8415c976e412dc7633](https://github.com/triratnaLi/yileAdmin/assets/111877391/ac71f558-6f76-476e-9976-45d317061bf7)
 
+![image](https://github.com/user-attachments/assets/b49e8047-8530-4bf3-932f-8a1484af434f)
